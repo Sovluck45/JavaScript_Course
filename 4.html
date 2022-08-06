@@ -32,8 +32,8 @@
 
     const num = Number(prompt("Введите число:"));
 
-    const hundred = Number.parseInt(num / 100) % 10;
-    const ten = Number.parseInt(num / 10) % 10;
+    const hundred = Math.trunc(num / 100) % 10;
+    const ten = Math.trunc(num / 10) % 10;
     const unit = num % 10;
 
     alert(`В числе ${num} количество сотен: ${hundred}, десятков: ${ten}, единиц: ${unit}`);
