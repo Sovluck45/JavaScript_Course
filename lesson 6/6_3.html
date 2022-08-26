@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <style>
+    i {
+      font-size: 50px;
+    }
+
+    .golden {
+      color: gold;
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+
+  <div class="stars_container">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+  </div>
+
+  <script>
+    "use strict";
+
+    /*
+    1. При наведении на любую из звезд, данной звезде должен ставиться класс
+    golden, также такой класс должен ставиться всем звездам до нее слева.
+    */
+    const stars = document.querySelectorAll(".fas");
+
+    stars.forEach(star => star.addEventListener("mouseover", event => {
+      event.target.classList.add("golden");
+      for (let i = 0; i < stars.length; i++) {
+        if (stars[i] === event.target) {
+          for (let j = i; j > -1; j--) {
+            stars[j].classList.add("golden");
+          }
+        }
+      }
+    }));
+
+    /*
+    2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
+    задания должны быть удалены.
+     */
+    stars.forEach(star => star.addEventListener("mouseout", event => {
+      event.target.classList.remove("golden");
+      for (let i = 0; i < stars.length; i++) {
+        if (stars[i] === event.target) {
+          for (let j = i; j > -1; j--) {
+            stars[j].classList.remove("golden");
+          }
+        }
+      }
+    }));
+
+    /*
+    3. Когда мы переводим мышь от одной звезды к другой, у нас могут мигать
+    звезды (временно могут становиться черными). Почему так? Напишите словами.
+    Можем ли мы это исправить? Если да, то предложите решение.
+
+    Звёзды становятся временно чёрными из-за того, что курсор,
+    в момент перевода, находится между двумя звёздами, то есть вне этих объектов.
+
+    Мы можем убрать пробелы между звёздами:
+    */
+    stars.forEach(star => star.style.marginRight = "-8px");
+  </script>
+</body>
+
+</html>
